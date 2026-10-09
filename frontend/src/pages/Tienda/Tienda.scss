@@ -1,0 +1,334 @@
+// Variables Originales para Máximo Contraste y Profundidad
+$primary: #6366f1;
+$success: #10b981;
+$dark: #0f172a;
+$slate-500: #64748b;
+// Las variables de fondo slate ya no se usan en el degradado pero las mantengo por estructura
+$slate-300: #cbd5e1; 
+$slate-200: #e2e8f0; 
+$border-color: #f1f5f9;  // Para bordes muy sutiles dentro del menú
+$white: #ffffff;
+
+// --- NUEVAS VARIABLES DE COLOR PARA EL FONDO MESH ---
+// Usamos tonos pastel vibrantes con opacidad para que se mezclen
+$mesh-purple: rgba(167, 139, 250, 0.3); // Violeta suave
+$mesh-blue: rgba(103, 232, 249, 0.3);   // Cian suave
+$mesh-mint: rgba(110, 231, 183, 0.3);   // Menta suave
+$mesh-rose: rgba(251, 113, 133, 0.3);   // Rosa suave
+
+.tienda-page {
+  min-height: 100vh;
+  // --- 1. FONDO MESH COLORIDO (Tonos claritos que se notan) ---
+  background-color: #f8fafc; // Color base claro
+  background-image: 
+    radial-gradient(at 10% 10%, #{$mesh-purple} 0, transparent 50%), 
+    radial-gradient(at 90% 10%, #{$mesh-blue} 0, transparent 50%), 
+    radial-gradient(at 90% 90%, #{$mesh-mint} 0, transparent 50%), 
+    radial-gradient(at 10% 90%, #{$mesh-rose} 0, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(255, 255, 255, 0.4) 0, transparent 100%); // Suavizado central
+
+  font-family: 'Inter', system-ui, sans-serif;
+  padding-bottom: 120px; // Espacio para el carrito flotante
+
+  .tienda-container {
+    max-width: 500px; // Centrado tipo App móvil
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+
+  .brand-tag {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-align: center;
+    color: rgba($dark, 0.3); // Branding más integrado al fondo
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  // Header Pro
+  .store-header {
+    margin-bottom: 2rem;
+    
+    .store-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      h1 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: $dark;
+        margin: 0;
+        letter-spacing: -0.03em;
+        text-transform: capitalize;
+      }
+
+      .store-status-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: $white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 2rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08); // Sombra más nítida
+        border: 1px solid rgba(0,0,0,0.05);
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          &.online { background: $success; box-shadow: 0 0 8px rgba($success, 0.5); }
+          &.offline { background: #ef4444; }
+        }
+      }
+    }
+
+    .store-subtitle {
+      color: rgba($dark, 0.7); // Subtítulo más legible sobre fondo gris
+      font-size: 0.95rem;
+      margin: 0;
+    }
+  }
+
+  .alert-closed {
+    background: #fff1f2;
+    color: #e11d48;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    border: 1px solid #ffe4e6;
+    box-shadow: 0 4px 10px rgba(#e11d48, 0.1); // Sombra de alerta más fuerte
+  }
+
+  // --- 2. CONTENEDOR DE PRODUCTOS "SUPER ELEVADO" CON MÁS SOMBRA ---
+  .menu-list {
+    background: $white;
+    padding: 2rem 1.5rem;
+    border-radius: 2.5rem; // Más redondeado para un look más orgánico
+    border: 1px solid rgba(0,0,0,0.03); // Borde casi invisible
+    
+    // --- SUPER SHADOW: Múltiples capas para máxima profundidad ---
+    box-shadow: 
+      0 30px 60px -12px rgba(0, 0, 0, 0.15), // Capa profunda y ancha
+      0 18px 36px -18px rgba(0, 0, 0, 0.1),  // Capa media
+      0 -2px 6px rgba(0, 0, 0, 0.02);         // Toque de sombra superior sutil
+
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: $white;
+    border-radius: 2rem;
+    border: 2px dashed rgba($dark, 0.1); // Dashed más visible
+    color: $slate-500;
+    
+    .icon { font-size: 3rem; margin-bottom: 1rem; }
+    p { font-weight: 600; margin: 0; }
+  }
+
+  // Categorías
+  .category-section {
+    .category-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: $dark;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+      letter-spacing: -0.01em;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -6px; left: 0;
+        width: 35px; height: 4px;
+        background: $primary;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  // Tarjeta de Producto (Horizontal Moderna Integrada)
+  .product-card {
+    background: $white;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid $border-color;
+    // Sombra individual mínima, integrada al menú
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:last-child { margin-bottom: 0; }
+
+    &:hover:not(.is-closed) { 
+      transform: translateY(-5px); 
+      box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.08); // Sombra nítida en hover
+      border-color: rgba($primary, 0.15);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      flex-shrink: 0;
+
+      .product-img, .product-img-placeholder {
+        width: 95px;
+        height: 95px;
+        border-radius: 1.25rem;
+        object-fit: cover;
+      }
+
+      .product-img-placeholder {
+        background: #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #cbd5e1;
+      }
+
+      .btn-add-floating {
+        position: absolute;
+        bottom: -6px;
+        right: -6px;
+        background: $dark;
+        color: $white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 4px solid $white; // Borde grueso integrado
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.15rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+        
+        &:hover { background: $primary; box-shadow: 0 6px 12px rgba($primary, 0.4); }
+        &:active { transform: scale(0.9); }
+      }
+    }
+
+    .product-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h3 { font-size: 1.15rem; font-weight: 700; margin: 0 0 0.3rem 0; color: $dark; letter-spacing: -0.01em; }
+      .description {
+        font-size: 0.85rem;
+        color: $slate-500;
+        margin: 0 0 0.8rem 0;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .price {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: $dark;
+        margin: 0;
+      }
+    }
+
+    &.is-closed {
+      opacity: 0.5;
+      filter: grayscale(0.8);
+      .btn-add-floating { display: none; }
+    }
+  }
+
+  // Barra de Carrito Flotante (Premium FAB)
+  .floating-cart-container {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 420px;
+    z-index: 100;
+  }
+
+  .floating-cart-bar {
+    width: 100%;
+    background: $dark;
+    border: none;
+    border-radius: 1.75rem; // Más redondeado píldora
+    padding: 1.15rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $white;
+    cursor: pointer;
+    // Sombra FAB muy profunda y nítida
+    box-shadow: 
+      0 25px 40px -8px rgba(0, 0, 0, 0.4), 
+      0 15px 15px -8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover { transform: translate(-50%, -4px) scale(1.03); background: #1e293b; }
+    &:active { transform: translate(-50%, 0) scale(0.96); }
+
+    .cart-left {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+
+      .cart-icon-box {
+        position: relative;
+        font-size: 1.6rem;
+        
+        .badge {
+          position: absolute;
+          top: -9px; right: -11px;
+          background: $success;
+          color: $dark;
+          font-size: 0.7rem;
+          font-weight: 900;
+          width: 22px; height: 22px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid $dark;
+        }
+      }
+
+      .view-cart-text { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+    }
+
+    .total-amount {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: rgba($white, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 0.9rem;
+    }
+
+    &:disabled {
+      background: $slate-500;
+      cursor: not-allowed;
+      transform: translate(-50%, 0);
+      box-shadow: none;
+    }
+  }
+}

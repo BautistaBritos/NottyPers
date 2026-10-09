@@ -1,0 +1,525 @@
+// Paleta de colores Premium
+$primary: #6366f1;       // Indigo 500
+$primary-hover: #4f46e5; // Indigo 600
+$bg-color: #f8fafc;      // Slate 50
+$text-dark: #0f172a;     // Slate 900
+$text-slate: #64748b;    // Slate 500
+$border-color: #e2e8f0;  // Slate 200
+$success: #10b981;       // Emerald 500
+
+.admin-container {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  // --- 1. FONDO SUTIL CON PATRÓN ---
+  background-color: $bg-color;
+  background-image: radial-gradient(#cbd5e1 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+
+  .admin-content {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  // --- HEADER BOX (CAMBIADO A BLANCO + SUPER SOMBRAS) ---
+  .admin-header-box {
+    background: #ffffff; 
+    padding: 1.5rem 2rem;
+    border-radius: 1.5rem;
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba($primary, 0.1);
+    position: relative;
+    
+    // Shadow Pro Multinivel
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.08), 
+      0 4px 6px -2px rgba(0, 0, 0, 0.04),
+      0 20px 25px -5px rgba(0, 0, 0, 0.05);
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #cbd5e1;
+
+      .header-brand-icon {
+        font-size: 0.85rem;
+        color: $primary;
+      }
+    }
+
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-text {
+      h1 { font-size: 1.8rem; font-weight: 800; color: $text-dark; margin: 0; }
+      p { color: $text-slate; font-size: 0.95rem; margin: 0.2rem 0 0; }
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .btn-header {
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+
+      &--settings {
+        background: #f1f5f9;
+        color: $text-dark;
+        border: 1.5px solid $border-color;
+        &:hover {
+          background: #e2e8f0;
+          transform: translateY(-1px);
+        }
+      }
+
+      &--exit {
+        background: $text-dark;
+        color: white;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+        &:hover {
+          background: #000;
+          transform: translateY(-1px);
+          box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
+        }
+      }
+    }
+  }
+
+  .admin-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 3rem;
+    align-items: start;
+    
+    @media (max-width: 1024px) { grid-template-columns: 1fr; }
+  }
+
+  // --- 2. FORMULARIO CON SOMBRA PROFUNDA ---
+  .form-sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .form-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(0,0,0,0.03);
+    
+    // Sombra Pro Elevated
+    box-shadow: 
+      0 20px 50px rgba(0, 0, 0, 0.1), 
+      0 10px 20px rgba(0, 0, 0, 0.05);
+
+    &.is-editing {
+      border: 2px solid $primary;
+      box-shadow: 0 0 0 4px rgba($primary, 0.1), 0 20px 50px rgba($primary, 0.15);
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      h2 { font-size: 1.5rem; font-weight: 700; color: $text-dark; margin: 0; }
+      .btn-close-edit {
+        background: none;
+        border: none;
+        font-size: 1.1rem;
+        color: $text-slate;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem;
+        border-radius: 0.4rem;
+        transition: color 0.15s, background 0.15s;
+        &:hover { color: #ef4444; background: #fff1f2; }
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      label { display: block; font-size: 0.875rem; font-weight: 700; color: $text-slate; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.025em; }
+      
+      .category-input-group {
+        display: flex;
+        gap: 0.5rem;
+        
+        .btn-add-cat {
+          background: #e0e7ff;
+          color: $primary;
+          border: none;
+          padding: 0 1rem;
+          border-radius: 0.75rem;
+          cursor: pointer;
+          font-size: 1.2rem;
+          transition: all 0.2s;
+          &:hover { background: $primary; color: white; transform: scale(1.05); }
+        }
+
+        .btn-del-cat {
+          background: #fee2e2;
+          color: #ef4444;
+          border: none;
+          padding: 0 0.8rem;
+          border-radius: 0.75rem;
+          cursor: pointer;
+          transition: all 0.2s;
+          &:hover { background: #ef4444; color: white; }
+          &:disabled { opacity: 0.5; cursor: not-allowed; &:hover { background: #fee2e2; color: #ef4444; } }
+        }
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border-radius: 0.75rem;
+        border: 1px solid $border-color;
+        background: #f8fafc;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+        &:focus { outline: none; border-color: $primary; background: white; box-shadow: 0 0 0 4px rgba($primary, 0.1); }
+      }
+
+      textarea.form-input { resize: none; }
+
+      .input-with-icon {
+        position: relative;
+        .input-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: $text-slate; }
+        .form-input { padding-left: 2.75rem; }
+      }
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border: none;
+      background: $text-dark;
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 1rem;
+      &:hover { background: #000; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
+      &:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    }
+  }
+
+  // --- CATÁLOGO ---
+  .catalog-section {
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      
+      .catalog-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        h2 { font-size: 1.5rem; font-weight: 700; color: $text-dark; margin: 0; }
+        .badge { background: $primary; color: white; padding: 0.25rem 0.8rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 700; }
+      }
+
+      .link-store {
+        color: $primary;
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        &:hover { text-decoration: underline; }
+      }
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card-item {
+      background: white;
+      border-radius: 1.5rem; // Más redondeado
+      overflow: hidden;
+      border: 1px solid $border-color;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      
+      &:hover { 
+        transform: translateY(-12px); 
+        box-shadow: 0 25px 40px -10px rgba(0,0,0,0.15);
+        border-color: rgba($primary, 0.2);
+      }
+      &.active-edit { border: 2px solid $primary; transform: scale(1.02); }
+
+      .img-container {
+        height: 190px;
+        position: relative;
+        background: #f1f5f9;
+        img { width: 100%; height: 100%; object-fit: cover; }
+        .placeholder { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #cbd5e1; }
+        .cat-tag {
+          position: absolute;
+          top: 1rem;
+          left: 1rem;
+          background: rgba($text-dark, 0.75);
+          color: white;
+          padding: 0.35rem 0.75rem;
+          border-radius: 0.6rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          backdrop-filter: blur(8px);
+        }
+      }
+
+      .info {
+        padding: 1.25rem;
+        .main-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 1.25rem;
+          h3 { margin: 0; font-size: 1.15rem; font-weight: 700; color: $text-dark; line-height: 1.2; }
+          .price { font-weight: 800; color: $success; font-size: 1.2rem; }
+        }
+
+        .actions {
+          display: flex;
+          gap: 0.75rem;
+          button {
+            border: none;
+            border-radius: 0.75rem;
+            padding: 0.65rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+          }
+          .btn-edit-small {
+            background: #f1f5f9;
+            color: $text-dark;
+            flex: 1;
+            gap: 0.4rem;
+            &:hover { background: $border-color; }
+          }
+          .btn-delete-small {
+            background: #fff1f2;
+            color: #f43f5e;
+            width: 42px;
+            &:hover { background: #ffe4e6; transform: scale(1.05); }
+          }
+        }
+      }
+    }
+
+    .empty-catalog {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: white;
+      border-radius: 1.5rem;
+      border: 2px dashed $border-color;
+      color: $text-slate;
+      font-weight: 500;
+    }
+  }
+}
+
+// ── Sección MercadoPago ────────────────────────────────────────
+.mp-section {
+  max-width: 1240px;
+  margin: 2.5rem auto 0;
+  background: white;
+  border-radius: 1.5rem;
+  border: 1px solid $border-color;
+  padding: 2rem 2.5rem;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+
+  .mp-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mp-section-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .mp-logo-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #e6f4fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: $text-dark;
+      margin: 0 0 0.2rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+      color: $text-slate;
+      margin: 0;
+    }
+  }
+
+  .mp-connected-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .mp-disconnected-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .mp-account-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: #f8fafc;
+    border: 1px solid $border-color;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+
+    .mp-account-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .mp-account-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: $text-slate;
+    }
+
+    .mp-account-email {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $text-dark;
+    }
+
+    .mp-account-expiry {
+      font-size: 0.78rem;
+      color: $text-slate;
+    }
+  }
+
+  .mp-connect-prompt {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+
+    p {
+      color: #0369a1;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+
+  .mp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s;
+
+    &--connect {
+      background: #009EE3;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 158, 227, 0.3);
+      &:hover { background: #0081c7; transform: translateY(-1px); }
+    }
+
+    &--disconnect {
+      background: #fff1f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      &:hover { background: #fee2e2; }
+      &:disabled { opacity: 0.6; cursor: not-allowed; }
+    }
+  }
+
+  @media (max-width: 640px) {
+    padding: 1.5rem;
+
+    .mp-section-header { flex-direction: column; align-items: flex-start; }
+    .mp-account-info { flex-direction: column; align-items: flex-start; }
+    .mp-connect-prompt { flex-direction: column; }
+  }
+}

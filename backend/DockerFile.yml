@@ -1,0 +1,25 @@
+# Usamos una imagen de Node ligera
+FROM node:20-alpine
+
+# Instalamos dependencias necesarias para algunas librerías de Node
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Copiamos archivos de dependencias
+COPY package*.json ./
+
+# Instalamos dependencias (incluyendo las de TS para compilar)
+RUN npm install
+
+# Copiamos el resto del código
+COPY . .
+
+# Compilamos TypeScript a JavaScript
+RUN npm run build
+
+# Exponemos el puerto
+EXPOSE 3001
+
+# Comando para arrancar
+CMD ["npm", "start"]

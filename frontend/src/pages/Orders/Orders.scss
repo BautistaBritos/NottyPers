@@ -1,0 +1,594 @@
+@use 'sass:color';
+
+// ============================================================
+// Design Tokens — Orders Panel
+// ============================================================
+$primary:      #6366f1;
+$primary-soft: #e0e7ff;
+$emerald:      #10b981;
+$emerald-soft: #d1fae5;
+$amber:        #f59e0b;
+$amber-soft:   #fef3c7;
+$red:          #ef4444;
+$red-soft:     #fee2e2;
+$dark:         #0f172a;
+$slate-800:    #1e293b;
+$slate-600:    #475569;
+$slate-400:    #94a3b8;
+$slate-100:    #f1f5f9;
+$slate-50:     #f8fafc;
+$white:        #ffffff;
+$border:       #e2e8f0;
+
+$radius-xl:    24px;
+$radius-lg:    16px;
+$radius-md:    12px;
+$radius-sm:    8px;
+
+$shadow-card:
+  0 1px 3px rgba(0, 0, 0, 0.06),
+  0 4px 12px rgba(0, 0, 0, 0.06);
+
+$shadow-hover:
+  0 8px 24px rgba(0, 0, 0, 0.1),
+  0 2px 8px rgba(0, 0, 0, 0.06);
+
+// ─── Splash / loading inicial ────────────────────────────────
+.orders-splash {
+  min-height: 100vh;
+  background: $slate-50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  .orders-splash-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: $dark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    font-size: 1.25rem;
+  }
+}
+
+// ─── Fondo mesh ──────────────────────────────────────────────
+.orders-container {
+  min-height: 100vh;
+  background-color: $slate-50;
+  background-image:
+    radial-gradient(at 5%  5%,  rgba(167, 139, 250, 0.18) 0, transparent 45%),
+    radial-gradient(at 95% 5%,  rgba(103, 232, 249, 0.18) 0, transparent 45%),
+    radial-gradient(at 95% 95%, rgba(110, 231, 183, 0.18) 0, transparent 45%),
+    radial-gradient(at 5%  95%, rgba(251, 113, 133, 0.18) 0, transparent 45%);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 1.5rem;
+
+  @media (min-width: 768px) { padding: 2.5rem 2rem; }
+}
+
+// ─── Contenedor interno con max-width ────────────────────────
+.orders-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// ─── Grids de pedidos ────────────────────────────────────────
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.online-orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+// ─── Header ──────────────────────────────────────────────────
+.panel-header {
+  background: $white;
+  border: 1px solid $border;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) { padding: 1.25rem 2rem; }
+
+  .panel-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .panel-brand-icon {
+      width: 40px;
+      height: 40px;
+      background: $dark;
+      border-radius: $radius-sm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: $dark;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+  }
+
+  .panel-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+// ─── Header buttons ──────────────────────────────────────────
+.hbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border-radius: $radius-md;
+  border: 1.5px solid transparent;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+
+  &:active { transform: scale(0.96); }
+
+  // Variantes
+  &--menu     { background: $primary-soft; color: $primary; border-color: color.adjust($primary-soft, $lightness: -5%); &:hover { background: color.adjust($primary-soft, $lightness: -4%); } }
+  &--store    { background: $slate-100; color: $slate-600; border-color: $border; text-decoration: none; &:hover { background: $border; color: $dark; } }
+  &--sound    { background: $slate-100; color: $slate-600; &:hover { background: $border; } }
+  &--sound-off { background: $red-soft; color: $red; &:hover { background: color.adjust($red-soft, $lightness: -4%); } }
+  &--open     { background: $emerald-soft; color: color.adjust($emerald, $lightness: -15%); border-color: color.adjust($emerald-soft, $lightness: -8%); &:hover { background: color.adjust($emerald-soft, $lightness: -5%); } }
+  &--closed   { background: $red-soft; color: color.adjust($red, $lightness: -10%); border-color: color.adjust($red-soft, $lightness: -8%); &:hover { background: color.adjust($red-soft, $lightness: -5%); } }
+  &--wa-on    { background: $emerald-soft; color: color.adjust($emerald, $lightness: -15%); border-color: color.adjust($emerald-soft, $lightness: -8%); &:hover { background: color.adjust($emerald-soft, $lightness: -5%); } }
+  &--wa-off   { background: $amber-soft; color: color.adjust($amber, $lightness: -20%); border-color: color.adjust($amber-soft, $lightness: -8%); animation: pulse-btn 2s infinite; &:hover { background: color.adjust($amber-soft, $lightness: -5%); } }
+  &--logout   { background: none; color: $slate-400; &:hover { color: $red; } }
+}
+
+@keyframes pulse-btn {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.3); }
+  50%       { box-shadow: 0 0 0 5px rgba(245, 158, 11, 0); }
+}
+
+// ─── Tabs ────────────────────────────────────────────────────
+.panel-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  background: $white;
+  padding: 0.35rem;
+  border-radius: $radius-xl;
+  border: 1px solid $border;
+  box-shadow: $shadow-card;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border-radius: $radius-lg;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: $slate-400;
+  background: transparent;
+
+  &:hover:not(.is-active) { background: $slate-100; color: $slate-600; }
+
+  &.is-active-local {
+    background: $dark;
+    color: $white;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+  }
+
+  &.is-active-online {
+    background: $emerald;
+    color: $white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  }
+}
+
+// ─── Input de nuevo pedido ────────────────────────────────────
+.order-input-bar {
+  background: $white;
+  border: 1px solid $border;
+  border-radius: $radius-xl;
+  padding: 1.25rem 1.5rem;
+  box-shadow: $shadow-card;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  input {
+    flex: 1;
+    min-width: 140px;
+    background: $slate-50;
+    border: 1.5px solid $border;
+    border-radius: $radius-md;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $dark;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &::placeholder { color: $slate-400; }
+    &:focus { border-color: $primary; box-shadow: 0 0 0 3px rgba($primary, 0.1); }
+  }
+
+  .btn-create {
+    background: $dark;
+    color: $white;
+    border: none;
+    border-radius: $radius-md;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.15s;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba($dark, 0.2);
+
+    &:hover { background: $slate-800; transform: translateY(-1px); box-shadow: 0 4px 12px rgba($dark, 0.25); }
+    &:active { transform: scale(0.97); }
+  }
+}
+
+// ─── Sección de estado (En preparación / Terminado) ──────────
+.status-section {
+  margin-bottom: 2.5rem;
+
+  .status-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      &--prep { background: $amber; box-shadow: 0 0 0 3px rgba($amber, 0.2); }
+      &--done { background: $emerald; }
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: $dark;
+      margin: 0;
+      text-transform: capitalize;
+    }
+
+    .count-badge {
+      background: $slate-100;
+      color: $slate-600;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 2rem;
+    }
+  }
+}
+
+// ─── Order Cards (Beeper) ─────────────────────────────────────
+.order-card {
+  background: $white;
+  border-radius: $radius-xl;
+  border: 1.5px solid $border;
+  box-shadow: $shadow-card;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover { transform: translateY(-4px); box-shadow: $shadow-hover; }
+
+  .order-number { font-size: 2.25rem; font-weight: 900; color: $dark; letter-spacing: -0.04em; line-height: 1; }
+  .order-customer { font-size: 0.75rem; font-weight: 700; color: $slate-400; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+
+  .order-meta {
+    background: $slate-50;
+    border: 1px solid $slate-100;
+    border-radius: $radius-md;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $slate-400;
+
+    .meta-elapsed { color: $amber; display: flex; align-items: center; gap: 0.3rem; }
+  }
+
+  .btn-deliver {
+    width: 100%;
+    padding: 0.9rem;
+    background: $dark;
+    color: $white;
+    border: none;
+    border-radius: $radius-md;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 0 2px 8px rgba($dark, 0.2);
+
+    &:hover { background: $slate-800; transform: translateY(-1px); }
+    &:active { transform: scale(0.98); }
+  }
+
+  .status-done-pill {
+    width: 100%;
+    padding: 0.9rem;
+    background: $emerald-soft;
+    color: color.adjust($emerald, $lightness: -12%);
+    border-radius: $radius-md;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-align: center;
+    border: 1.5px solid color.adjust($emerald-soft, $lightness: -6%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}
+
+// ─── Online Order Cards ──────────────────────────────────────
+.online-card {
+  background: $white;
+  border-radius: $radius-xl;
+  border: 1.5px solid $border;
+  box-shadow: $shadow-card;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover { transform: translateY(-4px); box-shadow: $shadow-hover; }
+
+  &--in-progress { border-color: $emerald; box-shadow: $shadow-card, 0 0 0 3px rgba($emerald, 0.08); }
+
+  // ── Cabecera de la card ─────────────────────────
+  .oc-header {
+    padding: 1.25rem 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .oc-client {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .oc-name {
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: $dark;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .oc-phone {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $emerald;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .oc-total {
+    background: $emerald-soft;
+    color: color.adjust($emerald, $lightness: -15%);
+    padding: 0.45rem 0.9rem;
+    border-radius: $radius-sm;
+    font-size: 1.1rem;
+    font-weight: 900;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border: 1px solid color.adjust($emerald-soft, $lightness: -6%);
+  }
+
+  // ── Badges de tipo y pago ───────────────────────
+  .oc-badges {
+    padding: 0.75rem 1.25rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .oc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: $radius-sm;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    border: 1px solid transparent;
+
+    &--delivery     { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+    &--takeaway     { background: $primary-soft; color: color.adjust($primary, $lightness: -10%); border-color: color.adjust($primary-soft, $lightness: -6%); }
+    &--efectivo     { background: $emerald-soft; color: color.adjust($emerald, $lightness: -15%); border-color: color.adjust($emerald-soft, $lightness: -6%); }
+    &--transferencia { background: #ede9fe; color: #6d28d9; border-color: #ddd6fe; }
+    &--mercadopago  { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+  }
+
+  // ── Lista de productos ──────────────────────────
+  .oc-items {
+    margin: 0.75rem 1.25rem;
+    background: $slate-50;
+    border: 1px solid $slate-100;
+    border-radius: $radius-md;
+    padding: 0.875rem 1rem;
+
+    .oc-items-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: $slate-400;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .oc-items-elapsed { display: flex; align-items: center; gap: 0.25rem; color: $amber; }
+
+    ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $slate-800;
+    }
+
+    .oc-qty {
+      background: $white;
+      min-width: 28px;
+      height: 28px;
+      border-radius: $radius-sm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: $dark;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+  }
+
+  // ── Acciones ────────────────────────────────────
+  .oc-actions {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .btn-accept {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    background: $emerald;
+    color: $white;
+    border: none;
+    border-radius: $radius-md;
+    font-size: 0.875rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    transition: all 0.15s;
+    box-shadow: 0 2px 8px rgba($emerald, 0.25);
+
+    &:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    &:active { transform: scale(0.97); }
+  }
+
+  .btn-dispatch {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    background: $dark;
+    color: $white;
+    border: none;
+    border-radius: $radius-md;
+    font-size: 0.875rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    transition: all 0.15s;
+    box-shadow: 0 2px 8px rgba($dark, 0.2);
+
+    &:hover { background: $slate-800; transform: translateY(-1px); }
+    &:active { transform: scale(0.97); }
+  }
+}
+
+// ─── Empty state ──────────────────────────────────────────────
+.orders-empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: $white;
+  border-radius: $radius-xl;
+  border: 2px dashed $border;
+
+  .orders-empty-icon { font-size: 3rem; margin-bottom: 1rem; color: $slate-400; }
+  p { font-size: 1rem; font-weight: 600; color: $slate-400; margin: 0; }
+}
+
+// ─── Loading ──────────────────────────────────────────────────
+.orders-loading {
+  text-align: center;
+  padding: 4rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: $slate-400;
+
+  .loading-dot {
+    display: inline-block;
+    animation: blink 1.4s infinite both;
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+}
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0; }
+  40% { opacity: 1; }
+}
